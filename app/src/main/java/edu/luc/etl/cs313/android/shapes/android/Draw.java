@@ -54,7 +54,7 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onRectangle(final Rectangle r) {
-
+		canvas.drawRect(0, 0, r.getWidth(), r.getHeight(), paint);
 		return null;
 	}
 
