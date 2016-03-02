@@ -3,6 +3,7 @@ package edu.luc.etl.cs313.android.shapes.model;
 /**
  * A decorator for specifying the stroke (foreground) color for drawing the
  * shape.
+ * This is an interesting change
  */
 public class Stroke implements Shape {
 
