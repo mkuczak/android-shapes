@@ -12,6 +12,7 @@ public class Stroke implements Shape {
 
 	public Stroke(final int color, final Shape shape) {
 		this.shape = shape;
+		this.color = color;
 	}
 
 	public int getColor() {
