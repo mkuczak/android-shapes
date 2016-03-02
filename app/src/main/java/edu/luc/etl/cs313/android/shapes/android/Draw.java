@@ -20,6 +20,7 @@ public class Draw implements Visitor<Void> {
 		this.canvas = null; // FIXME
 		this.paint = null; // FIXME
 		paint.setStyle(Style.STROKE);
+
 	}
 
 	@Override
@@ -48,7 +49,7 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onLocation(final Location l) {
-
+		l.getShape().accept(this);
 		return null;
 	}
 

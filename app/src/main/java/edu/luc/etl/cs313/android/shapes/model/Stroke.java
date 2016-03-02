@@ -6,11 +6,12 @@ package edu.luc.etl.cs313.android.shapes.model;
  */
 public class Stroke implements Shape {
 
-	protected Shape shape; //Why not use final on these two lines?
-	protected int color;
+	protected final Shape shape;
+	protected final int color;
 
 	public Stroke(final int color, final Shape shape) {
 		this.shape = shape;
+		this.color = color;
 	}
 
 	public int getColor() {
