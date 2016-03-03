@@ -20,7 +20,6 @@ public class Draw implements Visitor<Void> {
 		this.canvas = canvas; // FIXED
 		this.paint = paint; // FIXED
 		paint.setStyle(Style.STROKE);
-
 	}
 
 	@Override
@@ -31,19 +30,24 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onStroke(final Stroke c) {
-
+		c.getShape().accept(this);
+		paint.setStyle(Style.STROKE);
+		paint.setColor(c.getColor());
 		return null;
 	}
 
 	@Override
 	public Void onFill(final Fill f) {
-
+		f.getShape().accept(this);
+		paint.setStyle(Style.FILL);
 		return null;
 	}
 
 	@Override
 	public Void onGroup(final Group g) {
-
+		for (Shape: g) {
+			
+		}
 		return null;
 	}
 
@@ -53,7 +57,6 @@ public class Draw implements Visitor<Void> {
 		return null;
 	}
 
-
 	@Override
 	public Void onRectangle(final Rectangle r) {
 		canvas.drawRect(0, 0, r.getWidth(), r.getHeight(), paint);
@@ -62,7 +65,8 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onOutline(Outline o) {
-
+		o.getShape().accept(this);
+		paint.setStyle(Style.STROKE);
 		return null;
 	}
 

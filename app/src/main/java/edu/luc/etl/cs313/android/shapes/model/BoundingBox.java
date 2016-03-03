@@ -28,13 +28,16 @@ public class BoundingBox implements Visitor<Location> {
 
 	@Override
 	public Location onLocation(final Location l) {
-
-		return null;
+		final int x = l.getX();
+		final int y = l.getY();
+		return new Location(x, y, new Rectangle(x, y));
 	}
 
 	@Override
 	public Location onRectangle(final Rectangle r) {
-		return null;
+		final int width = r.getWidth();
+		final int height = r.getHeight();
+		return new Location(width, height,new Rectangle(width,height));
 	}
 
 	@Override
