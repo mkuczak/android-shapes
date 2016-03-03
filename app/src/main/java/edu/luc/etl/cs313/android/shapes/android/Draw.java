@@ -45,7 +45,7 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onGroup(final Group g) {
-		for (Shape: g) {
+		for (shape:g) {
 			
 		}
 		return null;
