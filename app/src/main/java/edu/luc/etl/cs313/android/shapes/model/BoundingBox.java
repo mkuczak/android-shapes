@@ -22,8 +22,18 @@ public class BoundingBox implements Visitor<Location> {
 
 	@Override
 	public Location onGroup(final Group g) {
-
-		return null;
+		//This needs to figure out mins and maxes among all of the children in the group
+		for (Shape s:g.getShapes())
+		{
+			Location loc = s.accept(this);
+			int x = loc.getX();
+			int y = loc.getY();
+			Rectangle r = (Rectangle) loc.getShape();
+			int width = r.getWidth();
+			int height = r.getHeight();
+			//some calculation of overall min and max x and y
+		}
+		return new Location(minX, minY, new Rectangle(maxX-minX, maxY-minY));
 	}
 
 	@Override
