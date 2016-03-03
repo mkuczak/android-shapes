@@ -1,5 +1,6 @@
 package edu.luc.etl.cs313.android.shapes.android;
 
+import java.util.List;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
@@ -73,8 +74,8 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onPolygon(final Polygon s) {
-
-		final float[] pts = null;
+		List<? extends Point> points = s.getPoints();
+		final float[] pts = new float[points.size()];
 
 		canvas.drawLines(pts, paint);
 		return null;
