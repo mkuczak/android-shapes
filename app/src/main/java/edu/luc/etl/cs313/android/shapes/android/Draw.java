@@ -30,23 +30,23 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onStroke(final Stroke c) {
-		c.getShape().accept(this);
 		paint.setStyle(Style.STROKE);
 		paint.setColor(c.getColor());
+		c.getShape().accept(this);
 		return null;
 	}
 
 	@Override
 	public Void onFill(final Fill f) {
-		f.getShape().accept(this);
 		paint.setStyle(Style.FILL);
+		f.getShape().accept(this);
 		return null;
 	}
 
 	@Override
 	public Void onGroup(final Group g) {
-		for (shape:g) {
-			
+		for (Shape shape:g.getShapes()) {
+			shape.accept(this);
 		}
 		return null;
 	}
@@ -57,6 +57,7 @@ public class Draw implements Visitor<Void> {
 		return null;
 	}
 
+
 	@Override
 	public Void onRectangle(final Rectangle r) {
 		canvas.drawRect(0, 0, r.getWidth(), r.getHeight(), paint);
@@ -65,8 +66,8 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onOutline(Outline o) {
-		o.getShape().accept(this);
 		paint.setStyle(Style.STROKE);
+		o.getShape().accept(this);
 		return null;
 	}
 
@@ -79,3 +80,4 @@ public class Draw implements Visitor<Void> {
 		return null;
 	}
 }
+
