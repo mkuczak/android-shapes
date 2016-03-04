@@ -16,13 +16,15 @@ public class BoundingBox implements Visitor<Location> {
 	}
 
 	@Override
-	public Location onFill(final Fill f) {
-		return null;
-	}
+	public Location onFill(final Fill f) { return null; }
 
 	@Override
 	public Location onGroup(final Group g) {
 		//This needs to figure out mins and maxes among all of the children in the group
+		int minX = Integer.MAX_VALUE;
+		int minY = Integer.MAX_VALUE;
+		int maxX = Integer.MIN_VALUE;
+		int maxY = Integer.MIN_VALUE;
 		for (Shape s:g.getShapes())
 		{
 			Location loc = s.accept(this);
@@ -31,7 +33,10 @@ public class BoundingBox implements Visitor<Location> {
 			Rectangle r = (Rectangle) loc.getShape();
 			int width = r.getWidth();
 			int height = r.getHeight();
-			//some calculation of overall min and max x and y
+			if (x < minX) { minX = x; }
+			if (y < minY) { minY = y; }
+			if (x + width > maxX) { maxX = x + width; }
+			if (y + height > maxY) { maxY = y + height; }
 		}
 		return new Location(minX, minY, new Rectangle(maxX-minX, maxY-minY));
 	}

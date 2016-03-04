@@ -76,6 +76,14 @@ public class Draw implements Visitor<Void> {
 	public Void onPolygon(final Polygon s) {
 		List<? extends Point> points = s.getPoints();
 		final float[] pts = new float[points.size()];
+		int counter = 0;
+		for (int i = 0; i < points.size(); i = i+2) {
+			pts[i] = points.get(i).getX();
+			pts[i+1] = points.get(i).getY();
+			counter = counter + 1;
+		}
+		pts[counter + 1] = points.get(0).getX();
+		pts[counter + 2] = points.get(0).getY();
 
 		canvas.drawLines(pts, paint);
 		return null;
