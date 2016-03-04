@@ -16,7 +16,10 @@ public class BoundingBox implements Visitor<Location> {
 	}
 
 	@Override
-	public Location onFill(final Fill f) { return null; }
+	//unconfirmed
+	public Location onFill(final Fill f) {
+		return f.getShape().accept(this);
+	}
 
 	@Override
 	public Location onGroup(final Group g) {
@@ -56,17 +59,34 @@ public class BoundingBox implements Visitor<Location> {
 	}
 
 	@Override
+	//unconfirmed
 	public Location onStroke(final Stroke c) {
-		return null;
+		return c.getShape().accept(this);
 	}
 
 	@Override
+	//unconfirmed
 	public Location onOutline(final Outline o) {
-		return null;
+		return o.getShape().accept(this);
 	}
 
 	@Override
+	//unconfirmed
 	public Location onPolygon(final Polygon s) {
-		final List<>; //que?
+		int minX = Integer.MAX_VALUE;
+		int minY = Integer.MAX_VALUE;
+		int maxX = Integer.MIN_VALUE;
+		int maxY = Integer.MIN_VALUE;
+		for (Point pt:s.getPoints())
+		{
+			Location loc = s.accept(this);
+			int x = loc.getX();
+			int y = loc.getY();
+			if (x < minX) { minX = x; }
+			if (y < minY) { minY = y; }
+			if (x > maxX) { maxX = x; }
+			if (y > maxY) { maxY = y; }
+		}
+		return new Location(minX, minY, new Rectangle(maxX-minX, maxY-minY));
 	}
 }
