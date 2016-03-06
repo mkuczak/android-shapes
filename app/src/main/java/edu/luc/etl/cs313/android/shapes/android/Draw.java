@@ -75,7 +75,7 @@ public class Draw implements Visitor<Void> {
 	@Override
 	public Void onPolygon(final Polygon s) {
 		List<? extends Point> points = s.getPoints();
-		final float[] pts = new float[points.size()];
+		final float[] pts = new float[2 * points.size()];
 		int counter = 0;
 		for (int i = 0; i < points.size(); i = i+2) {
 			pts[i] = points.get(i).getX();
