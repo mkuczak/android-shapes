@@ -77,13 +77,15 @@ public class Draw implements Visitor<Void> {
 		List<? extends Point> points = s.getPoints();
 		final float[] pts = new float[2 * points.size() + 2];
 		int counter = 0;
-		for (int i = 0; i < points.size(); i = i+2) {
-			pts[i] = points.get(i).getX();
-			pts[i+1] = points.get(i).getY();
-			counter = counter + 1;
+		for (int i = 0; i < points.size(); i++) {
+			pts[counter] = points.get(i).getX();
+			counter++;
+			pts[counter] = points.get(i).getY();
+			counter++;
 		}
-		pts[counter + 1] = points.get(0).getX();
-		pts[counter + 2] = points.get(0).getY();
+		pts[counter] = points.get(0).getX();
+		counter++;
+		pts[counter] = points.get(0).getY();
 
 		canvas.drawLines(pts, paint);
 		return null;
