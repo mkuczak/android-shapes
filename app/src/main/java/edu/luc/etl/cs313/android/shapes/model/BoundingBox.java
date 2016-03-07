@@ -48,7 +48,10 @@ public class BoundingBox implements Visitor<Location> {
 	public Location onLocation(final Location l) {
 		final int x = l.getX();
 		final int y = l.getY();
-		return new Location(x, y, new Rectangle(x, y));
+		final Location locshape = l.getShape().accept(this);
+		final  int locw = locshape.getX();
+		final  int loch = locshape.getY();
+		return new Location(x + locw, y + loch, locshape.getShape());
 	}
 
 	@Override
