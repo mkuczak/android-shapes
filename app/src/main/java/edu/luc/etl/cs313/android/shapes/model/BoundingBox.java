@@ -80,7 +80,7 @@ public class BoundingBox implements Visitor<Location> {
 		int maxY = Integer.MIN_VALUE;
 		for (Point pt:s.getPoints())
 		{
-			Location loc = s.accept(this);
+			//Location loc = s.accept(this);
 			//int x = loc.getX();		//An unconfirmed revision
 			int x = pt.getX();
 			//int y = loc.getY();
