@@ -53,10 +53,9 @@ public class BoundingBox implements Visitor<Location> {
 
 	@Override
 	public Location onRectangle(final Rectangle r) {
-		Location loc = r.accept(this); //If this change was inappropriate, delete this line
 		final int width = r.getWidth();
 		final int height = r.getHeight();
-		return new Location(loc.getX(),loc.getY(), new Rectangle(width,height)); //If... change to 0, 0
+		return new Location(0,0, new Rectangle(width,height));
 	}
 
 	@Override
@@ -80,11 +79,9 @@ public class BoundingBox implements Visitor<Location> {
 		int maxY = Integer.MIN_VALUE;
 		for (Point pt:s.getPoints())
 		{
-			//Location loc = s.accept(this);
-			//int x = loc.getX();		//An unconfirmed revision
-			int x = pt.getX();
-			//int y = loc.getY();
-			int y = pt.getY();
+			Location loc = s.accept(this);
+			int x = loc.getX();
+			int y = loc.getY();
 			if (x < minX) { minX = x; }
 			if (y < minY) { minY = y; }
 			if (x > maxX) { maxX = x; }
