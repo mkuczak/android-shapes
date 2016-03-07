@@ -1,5 +1,6 @@
 package edu.luc.etl.cs313.android.shapes.android;
 
+import java.util.ArrayList;
 import java.util.List;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -31,6 +32,7 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onStroke(final Stroke c) {
+		paint.setStyle(Style.STROKE);
 		paint.setColor(c.getColor());
 		c.getShape().accept(this);
 		return null;
@@ -38,8 +40,9 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onFill(final Fill f) {
-		paint.setStyle(Style.FILL);
+		paint.setStyle(Style.FILL_AND_STROKE);
 		f.getShape().accept(this);
+		//paint.setStyle(Style.STROKE);
 		return null;
 	}
 
@@ -69,6 +72,7 @@ public class Draw implements Visitor<Void> {
 	@Override
 	public Void onOutline(Outline o) {
 		paint.setStyle(Style.STROKE);
+		paint.setColor(paint.getColor()); //??
 		o.getShape().accept(this);
 		return null;
 	}
