@@ -31,7 +31,6 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onStroke(final Stroke c) {
-		paint.setStyle(Style.STROKE);
 		paint.setColor(c.getColor());
 		c.getShape().accept(this);
 		return null;
